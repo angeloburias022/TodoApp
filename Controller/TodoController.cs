@@ -38,20 +38,22 @@ namespace TodoList.Controller
             using (SqlConnection con = new SqlConnection(constring))
             {
 
-                string GetQuery = "SELECT TodoID, Title, Description, When_Todo FROM Todo";
+                string GetQuery = "SELECT TodoID, Title, Description, When_Todo FROM Todo where Task_status !='Done' ";
                 using (SqlCommand com = new SqlCommand(GetQuery, con))
                 {
-                    con.Open();
+                    
                     using (SqlDataAdapter adapter = new SqlDataAdapter(com))
                     {
+                        con.Open();
                         ds.Clear();
                         adapter.Fill(ds);
 
                         dt = ds.Tables[0];
-
+                        con.Close();
                         return dt;
+                        
                     }
-                    con.Close();
+                    
                 }
 
 
@@ -90,19 +92,38 @@ namespace TodoList.Controller
         {
             try
             {
-                if (MessageBox.Show("Add?", "Add to Todo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)== DialogResult.OK)
-                {
+                //if (MessageBox.Show("Add?", "Add to Todo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)== DialogResult.OK)
+                //{
                     using (TodoListAppEntities db = new TodoListAppEntities())
                     {
-                        db.Todoes.Add(add);
-                        db.SaveChanges();
-                        MessageBox.Show("Added successfully!");
+                        using (SqlConnection con = new SqlConnection(constring))
+                        {
+                            using (SqlCommand checkCommand = new SqlCommand("SELECT * FROM Todo WHERE ([TodoID] = '" + add.TodoID + "')", con))
+                            {
+                                con.Open();
+                                SqlDataReader reader = checkCommand.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+
+                                    // if record exist
+                                    MessageBox.Show("Task Already Exists.");
+                                    con.Close();
+                                }
+                                else
+                                {
+                                    db.Todoes.Add(add);
+                                    db.SaveChanges();
+                                    MessageBox.Show("Added successfully!");
+                                }
+                            }
+                        }
+                      
                     }
-                }
-                else
-                {       
-                   MessageBox.Show("Cancelled successfully");           
-                }
+                //}
+                //else
+                //{       
+                //   MessageBox.Show("Cancelled successfully");           
+                //}
                
             }
             catch(Exception error)

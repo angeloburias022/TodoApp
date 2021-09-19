@@ -33,8 +33,7 @@ namespace TodoList
         {
 
             InitializeComponent();
-            cmb_task_status.Visible = false;
-            lbl_markasdone.Visible = false;
+         
         }
         private void DashBoard_Load(object sender, EventArgs e)
         {
@@ -83,19 +82,40 @@ namespace TodoList
             try
             {
 
-                var NewUpdate = new Todo_Model()
-                {
-                    TodoID = Convert.ToInt32(tb_id.Text),
-                    Title = tb_title_changes.Text,
-                    Description = tb_desc_changes.Text,
-                    When_Todo = cmb_when_changes.Text,
-                    Task_Status = cmb_task_status.Text
-                };
+                
+
                 // TODO: 1 finished this logic
-                if (MessageBox.Show("Save changes?", "Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show("Save?", "Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
 
-                    tc.UpdateTodo(NewUpdate);
+                    if (rd_done.Checked)
+                    {
+                        var NewUpdate = new Todo_Model()
+                        {
+                            TodoID = Convert.ToInt32(tb_id.Text),
+                            Title = tb_title_changes.Text,
+                            Description = tb_desc_changes.Text,
+                            When_Todo = cmb_when_changes.Text,
+                            Task_Status = CheckRadioDone()
+                        };
+
+                        tc.UpdateTodo(NewUpdate);
+
+                    }else if(rd_notDone.Checked)
+                    {
+
+
+                        var AddNew = new Todo()
+                        {
+                        
+                            Title = tb_title_changes.Text,
+                            Description = tb_desc_changes.Text,
+                            When_Todo = cmb_when_changes.Text,
+                            Task_Status = CheckRadioDone()
+                        };
+
+                        tc.AddNewTodo(AddNew);
+                    }
 
 
 
@@ -115,16 +135,6 @@ namespace TodoList
             }
         }
 
-        private void btn_markdone_Click(object sender, EventArgs e)
-        {
-
-
-            cmb_task_status.Visible = true;
-            lbl_markasdone.Visible = true;
-
-
-            
-        }
 
         private void todolist_datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -136,7 +146,7 @@ namespace TodoList
                 tb_desc_changes.Text = this.todolist_datagrid.CurrentRow.Cells[2].Value.ToString();
                 cmb_when_changes.Text = this.todolist_datagrid.CurrentRow.Cells[3].Value.ToString();
 
-                cmb_task_status.Text = this.todolist_datagrid.CurrentRow.Cells[4].Value.ToString();
+                rd_done.Text = this.todolist_datagrid.CurrentRow.Cells[4].Value.ToString();
 
             }
             else
@@ -158,28 +168,41 @@ namespace TodoList
             // pass the finished task method to the datasource
             todolist_datagrid.DataSource = tc.GetFinishedTask();
 
-            HideMarkStatus();
+            
         }
 
         private void btn_Task_Click(object sender, EventArgs e)
         {
-            // updates the datagrid when this handler is called
-            todolist_datagrid.Update();
+
             // pass the finished task method to the datasource
             todolist_datagrid.DataSource = tc.GetTodo();
 
-            HideMarkStatus();
+
+            // updates the datagrid when this handler is called
+            todolist_datagrid.Update();
+
+            
           
         }
 
-
-        private void HideMarkStatus()
+        private string CheckRadioDone()
         {
-            lbl_markasdone.Visible = false;
-            cmb_task_status.Visible = false;
 
+            if (rd_done.Checked)
+            {
+                return rd_done.Text = "Done";
+            }
+            else if(rd_notDone.Checked)
+            {
+                return rd_notDone.Text = "Not Done";
+            }else
+            {
+                return rd_done.Text = "Done";
+            }
         }
 
+
+ 
        
 
         private void btn_clear_Click(object sender, EventArgs e)
