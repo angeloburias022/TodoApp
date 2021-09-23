@@ -13,16 +13,12 @@ namespace TodoList.Controller
 {
     public class TodoController
     {
-
         DataSet ds = new DataSet();
         DataTable dt = new DataTable();
         private static string constring = ConfigurationManager.ConnectionStrings["TodoApp_connectionString"].ConnectionString;
 
-
         SqlConnection connection = new SqlConnection(constring);
-
-      
-       private bool CheckConnection()
+        private bool CheckConnection()
         {
             if (connection.State == ConnectionState.Open)
             {
@@ -31,14 +27,12 @@ namespace TodoList.Controller
             else
                 return false;
         }
-
-
         public DataTable GetTodo()
         {
             using (SqlConnection con = new SqlConnection(constring))
             {
 
-                string GetQuery = "SELECT TodoID, Title, Description, When_Todo FROM Todo where Task_status !='Done' ";
+                string GetQuery = "SELECT When_Todo, Title, Description, TodoID FROM Todo where Task_status !='Done' ";
                 using (SqlCommand com = new SqlCommand(GetQuery, con))
                 {
                     
@@ -60,7 +54,6 @@ namespace TodoList.Controller
             }
 
         }
-
         public  DataTable GetFinishedTask()
         {
             using (SqlConnection con = new SqlConnection(constring))
@@ -87,7 +80,7 @@ namespace TodoList.Controller
 
         }
 
-
+        // has add new task and save updates functionality
         public void AddNewTodo(Todo add)
         {
             try
@@ -132,9 +125,6 @@ namespace TodoList.Controller
             }
              
         }
-
-
-
         public void UpdateTodo(Todo_Model update)
         {
             try
@@ -150,7 +140,7 @@ namespace TodoList.Controller
                     using (SqlCommand com = new SqlCommand(updateQuery, con))
                     {
                         com.ExecuteNonQuery();
-                        MessageBox.Show("Change updated");
+                        MessageBox.Show("Update Changes", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     con.Close();
