@@ -55,6 +55,7 @@ namespace TodoList
             this.btn_start = new Guna.UI2.WinForms.Guna2Button();
             this.btn_stop = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btn_saveTaskTimer = new Guna.UI2.WinForms.Guna2Button();
             this.dataGridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_datagrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -431,6 +432,7 @@ namespace TodoList
             this.panel1.Controls.Add(this.guna2TextBox2);
             this.panel1.Controls.Add(this.btn_stop);
             this.panel1.Controls.Add(this.btn_start);
+            this.panel1.Controls.Add(this.btn_saveTaskTimer);
             this.panel1.Location = new System.Drawing.Point(36, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(311, 221);
@@ -540,6 +542,29 @@ namespace TodoList
             this.guna2TextBox1.Size = new System.Drawing.Size(262, 36);
             this.guna2TextBox1.TabIndex = 5;
             // 
+            // btn_saveTaskTimer
+            // 
+            this.btn_saveTaskTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_saveTaskTimer.BorderRadius = 4;
+            this.btn_saveTaskTimer.CheckedState.Parent = this.btn_saveTaskTimer;
+            this.btn_saveTaskTimer.CustomImages.Parent = this.btn_saveTaskTimer;
+            this.btn_saveTaskTimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_saveTaskTimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_saveTaskTimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_saveTaskTimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_saveTaskTimer.DisabledState.Parent = this.btn_saveTaskTimer;
+            this.btn_saveTaskTimer.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_saveTaskTimer.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_saveTaskTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_saveTaskTimer.ForeColor = System.Drawing.Color.White;
+            this.btn_saveTaskTimer.HoverState.Parent = this.btn_saveTaskTimer;
+            this.btn_saveTaskTimer.Location = new System.Drawing.Point(52, 181);
+            this.btn_saveTaskTimer.Name = "btn_saveTaskTimer";
+            this.btn_saveTaskTimer.ShadowDecoration.Parent = this.btn_saveTaskTimer;
+            this.btn_saveTaskTimer.Size = new System.Drawing.Size(97, 36);
+            this.btn_saveTaskTimer.TabIndex = 10;
+            this.btn_saveTaskTimer.Text = "SAVE";
+            // 
             // DashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,6 +616,7 @@ namespace TodoList
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
         private Guna.UI2.WinForms.Guna2Button btn_stop;
         private Guna.UI2.WinForms.Guna2Button btn_start;
+        private Guna.UI2.WinForms.Guna2Button btn_saveTaskTimer;
     }
 }
 
