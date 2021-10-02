@@ -50,25 +50,27 @@ namespace TodoList
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.btn_start = new Guna.UI2.WinForms.Guna2Button();
-            this.btn_stop = new Guna.UI2.WinForms.Guna2Button();
+            this.timer_panel = new System.Windows.Forms.Panel();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.tb_timer = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btn_stopTimer = new Guna.UI2.WinForms.Guna2Button();
+            this.btn_startTimer = new Guna.UI2.WinForms.Guna2Button();
             this.btn_saveTaskTimer = new Guna.UI2.WinForms.Guna2Button();
+            this.tb_callTimer = new Guna.UI2.WinForms.Guna2Button();
+            this.btn_resetTimer = new Guna.UI2.WinForms.Guna2Button();
             this.dataGridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_datagrid)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.timer_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridPanel
             // 
             this.dataGridPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridPanel.Controls.Add(this.panel1);
             this.dataGridPanel.Controls.Add(this.rd_notDone);
             this.dataGridPanel.Controls.Add(this.rd_done);
             this.dataGridPanel.Controls.Add(this.tb_id);
             this.dataGridPanel.Controls.Add(this.btn_delete);
+            this.dataGridPanel.Controls.Add(this.tb_callTimer);
             this.dataGridPanel.Controls.Add(this.btn_clear);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel6);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel9);
@@ -94,7 +96,7 @@ namespace TodoList
             this.rd_notDone.Checked = true;
             this.rd_notDone.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.rd_notDone.CheckedState.BorderThickness = 0;
-            this.rd_notDone.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.rd_notDone.CheckedState.FillColor = System.Drawing.Color.Black;
             this.rd_notDone.CheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rd_notDone.CheckedState.InnerOffset = -4;
             this.rd_notDone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
@@ -114,7 +116,7 @@ namespace TodoList
             this.rd_done.AutoSize = true;
             this.rd_done.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.rd_done.CheckedState.BorderThickness = 0;
-            this.rd_done.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.rd_done.CheckedState.FillColor = System.Drawing.Color.Black;
             this.rd_done.CheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rd_done.CheckedState.InnerOffset = -4;
             this.rd_done.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
@@ -130,10 +132,11 @@ namespace TodoList
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(411, 268);
+            this.tb_id.Location = new System.Drawing.Point(411, 292);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(51, 20);
             this.tb_id.TabIndex = 11;
+            this.tb_id.Visible = false;
             // 
             // btn_delete
             // 
@@ -151,7 +154,7 @@ namespace TodoList
             this.btn_delete.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btn_delete.ForeColor = System.Drawing.Color.White;
             this.btn_delete.HoverState.Parent = this.btn_delete;
-            this.btn_delete.Location = new System.Drawing.Point(353, 156);
+            this.btn_delete.Location = new System.Drawing.Point(353, 147);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.ShadowDecoration.Parent = this.btn_delete;
             this.btn_delete.Size = new System.Drawing.Size(136, 36);
@@ -175,7 +178,7 @@ namespace TodoList
             this.btn_clear.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btn_clear.ForeColor = System.Drawing.Color.White;
             this.btn_clear.HoverState.Parent = this.btn_clear;
-            this.btn_clear.Location = new System.Drawing.Point(353, 198);
+            this.btn_clear.Location = new System.Drawing.Point(353, 189);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.ShadowDecoration.Parent = this.btn_clear;
             this.btn_clear.Size = new System.Drawing.Size(136, 36);
@@ -217,7 +220,7 @@ namespace TodoList
             // 
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(302, 259);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(303, 283);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(102, 29);
             this.guna2HtmlLabel7.TabIndex = 8;
@@ -228,7 +231,7 @@ namespace TodoList
             // 
             this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel8.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(388, 85);
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(388, 76);
             this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             this.guna2HtmlLabel8.Size = new System.Drawing.Size(64, 26);
             this.guna2HtmlLabel8.TabIndex = 8;
@@ -238,7 +241,7 @@ namespace TodoList
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(361, 14);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(361, 5);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(128, 26);
             this.guna2HtmlLabel4.TabIndex = 8;
@@ -254,7 +257,7 @@ namespace TodoList
             this.todolist_datagrid.Location = new System.Drawing.Point(12, 14);
             this.todolist_datagrid.Name = "todolist_datagrid";
             this.todolist_datagrid.ReadOnly = true;
-            this.todolist_datagrid.Size = new System.Drawing.Size(331, 204);
+            this.todolist_datagrid.Size = new System.Drawing.Size(331, 196);
             this.todolist_datagrid.TabIndex = 0;
             this.todolist_datagrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.todolist_datagrid_CellClick);
             this.todolist_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.todolist_datagrid_CellDoubleClick);
@@ -307,7 +310,7 @@ namespace TodoList
             "COMPLETED",
             "TASK"});
             this.cmb_two.ItemsAppearance.Parent = this.cmb_two;
-            this.cmb_two.Location = new System.Drawing.Point(353, 114);
+            this.cmb_two.Location = new System.Drawing.Point(353, 105);
             this.cmb_two.Name = "cmb_two";
             this.cmb_two.ShadowDecoration.Parent = this.cmb_two;
             this.cmb_two.Size = new System.Drawing.Size(136, 36);
@@ -333,7 +336,7 @@ namespace TodoList
             "ADD",
             "SAVE"});
             this.Cmb_one.ItemsAppearance.Parent = this.Cmb_one;
-            this.Cmb_one.Location = new System.Drawing.Point(353, 43);
+            this.Cmb_one.Location = new System.Drawing.Point(353, 34);
             this.Cmb_one.Name = "Cmb_one";
             this.Cmb_one.ShadowDecoration.Parent = this.Cmb_one;
             this.Cmb_one.Size = new System.Drawing.Size(136, 36);
@@ -426,92 +429,18 @@ namespace TodoList
             this.guna2HtmlLabel3.TabIndex = 6;
             this.guna2HtmlLabel3.Text = "When:";
             // 
-            // panel1
+            // timer_panel
             // 
-            this.panel1.Controls.Add(this.guna2TextBox1);
-            this.panel1.Controls.Add(this.guna2TextBox2);
-            this.panel1.Controls.Add(this.btn_stop);
-            this.panel1.Controls.Add(this.btn_start);
-            this.panel1.Controls.Add(this.btn_saveTaskTimer);
-            this.panel1.Location = new System.Drawing.Point(36, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(311, 221);
-            this.panel1.TabIndex = 13;
-            // 
-            // guna2TextBox2
-            // 
-            this.guna2TextBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2TextBox2.BorderColor = System.Drawing.Color.Transparent;
-            this.guna2TextBox2.BorderRadius = 8;
-            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox2.DefaultText = "";
-            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.DisabledState.Parent = this.guna2TextBox2;
-            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox2.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.FocusedState.Parent = this.guna2TextBox2;
-            this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.guna2TextBox2.ForeColor = System.Drawing.Color.White;
-            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox2.HoverState.Parent = this.guna2TextBox2;
-            this.guna2TextBox2.Location = new System.Drawing.Point(113, 83);
-            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.guna2TextBox2.Name = "guna2TextBox2";
-            this.guna2TextBox2.PasswordChar = '\0';
-            this.guna2TextBox2.PlaceholderText = "      0:00";
-            this.guna2TextBox2.SelectedText = "";
-            this.guna2TextBox2.ShadowDecoration.Parent = this.guna2TextBox2;
-            this.guna2TextBox2.Size = new System.Drawing.Size(98, 36);
-            this.guna2TextBox2.TabIndex = 5;
-            // 
-            // btn_start
-            // 
-            this.btn_start.BackColor = System.Drawing.Color.Transparent;
-            this.btn_start.BorderRadius = 4;
-            this.btn_start.CheckedState.Parent = this.btn_start;
-            this.btn_start.CustomImages.Parent = this.btn_start;
-            this.btn_start.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_start.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_start.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btn_start.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btn_start.DisabledState.Parent = this.btn_start;
-            this.btn_start.FillColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_start.FocusedColor = System.Drawing.Color.LimeGreen;
-            this.btn_start.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btn_start.ForeColor = System.Drawing.Color.White;
-            this.btn_start.HoverState.Parent = this.btn_start;
-            this.btn_start.Location = new System.Drawing.Point(52, 136);
-            this.btn_start.Name = "btn_start";
-            this.btn_start.ShadowDecoration.Parent = this.btn_start;
-            this.btn_start.Size = new System.Drawing.Size(97, 36);
-            this.btn_start.TabIndex = 10;
-            this.btn_start.Text = "START";
-            // 
-            // btn_stop
-            // 
-            this.btn_stop.BackColor = System.Drawing.Color.Transparent;
-            this.btn_stop.BorderRadius = 4;
-            this.btn_stop.CheckedState.Parent = this.btn_stop;
-            this.btn_stop.CustomImages.Parent = this.btn_stop;
-            this.btn_stop.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btn_stop.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btn_stop.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btn_stop.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btn_stop.DisabledState.Parent = this.btn_stop;
-            this.btn_stop.FillColor = System.Drawing.Color.Red;
-            this.btn_stop.FocusedColor = System.Drawing.Color.LimeGreen;
-            this.btn_stop.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.btn_stop.ForeColor = System.Drawing.Color.White;
-            this.btn_stop.HoverState.Parent = this.btn_stop;
-            this.btn_stop.Location = new System.Drawing.Point(176, 136);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.ShadowDecoration.Parent = this.btn_stop;
-            this.btn_stop.Size = new System.Drawing.Size(97, 36);
-            this.btn_stop.TabIndex = 10;
-            this.btn_stop.Text = "STOP";
+            this.timer_panel.Controls.Add(this.guna2TextBox1);
+            this.timer_panel.Controls.Add(this.tb_timer);
+            this.timer_panel.Controls.Add(this.btn_stopTimer);
+            this.timer_panel.Controls.Add(this.btn_startTimer);
+            this.timer_panel.Controls.Add(this.btn_resetTimer);
+            this.timer_panel.Controls.Add(this.btn_saveTaskTimer);
+            this.timer_panel.Location = new System.Drawing.Point(23, 15);
+            this.timer_panel.Name = "timer_panel";
+            this.timer_panel.Size = new System.Drawing.Size(512, 476);
+            this.timer_panel.TabIndex = 13;
             // 
             // guna2TextBox1
             // 
@@ -532,15 +461,93 @@ namespace TodoList
             this.guna2TextBox1.ForeColor = System.Drawing.Color.White;
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox1.HoverState.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.Location = new System.Drawing.Point(28, 16);
+            this.guna2TextBox1.Location = new System.Drawing.Point(124, 145);
             this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PasswordChar = '\0';
             this.guna2TextBox1.PlaceholderText = "TASK";
             this.guna2TextBox1.SelectedText = "";
             this.guna2TextBox1.ShadowDecoration.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.Size = new System.Drawing.Size(262, 36);
+            this.guna2TextBox1.Size = new System.Drawing.Size(227, 36);
             this.guna2TextBox1.TabIndex = 5;
+            // 
+            // tb_timer
+            // 
+            this.tb_timer.BackColor = System.Drawing.Color.Transparent;
+            this.tb_timer.BorderColor = System.Drawing.Color.Transparent;
+            this.tb_timer.BorderRadius = 8;
+            this.tb_timer.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tb_timer.DefaultText = "";
+            this.tb_timer.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.tb_timer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.tb_timer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tb_timer.DisabledState.Parent = this.tb_timer;
+            this.tb_timer.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.tb_timer.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tb_timer.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tb_timer.FocusedState.Parent = this.tb_timer;
+            this.tb_timer.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.tb_timer.ForeColor = System.Drawing.Color.White;
+            this.tb_timer.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.tb_timer.HoverState.Parent = this.tb_timer;
+            this.tb_timer.Location = new System.Drawing.Point(196, 204);
+            this.tb_timer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_timer.Name = "tb_timer";
+            this.tb_timer.PasswordChar = '\0';
+            this.tb_timer.PlaceholderText = "00:00:00";
+            this.tb_timer.ReadOnly = true;
+            this.tb_timer.SelectedText = "";
+            this.tb_timer.ShadowDecoration.Parent = this.tb_timer;
+            this.tb_timer.Size = new System.Drawing.Size(106, 36);
+            this.tb_timer.TabIndex = 5;
+            // 
+            // btn_stopTimer
+            // 
+            this.btn_stopTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_stopTimer.BorderRadius = 4;
+            this.btn_stopTimer.CheckedState.Parent = this.btn_stopTimer;
+            this.btn_stopTimer.CustomImages.Parent = this.btn_stopTimer;
+            this.btn_stopTimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_stopTimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_stopTimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_stopTimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_stopTimer.DisabledState.Parent = this.btn_stopTimer;
+            this.btn_stopTimer.FillColor = System.Drawing.Color.Red;
+            this.btn_stopTimer.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_stopTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_stopTimer.ForeColor = System.Drawing.Color.White;
+            this.btn_stopTimer.HoverState.Parent = this.btn_stopTimer;
+            this.btn_stopTimer.Location = new System.Drawing.Point(249, 252);
+            this.btn_stopTimer.Name = "btn_stopTimer";
+            this.btn_stopTimer.ShadowDecoration.Parent = this.btn_stopTimer;
+            this.btn_stopTimer.Size = new System.Drawing.Size(97, 36);
+            this.btn_stopTimer.TabIndex = 10;
+            this.btn_stopTimer.Text = "STOP";
+            this.btn_stopTimer.Click += new System.EventHandler(this.btn_stopTimer_Click);
+            // 
+            // btn_startTimer
+            // 
+            this.btn_startTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_startTimer.BorderRadius = 4;
+            this.btn_startTimer.CheckedState.Parent = this.btn_startTimer;
+            this.btn_startTimer.CustomImages.Parent = this.btn_startTimer;
+            this.btn_startTimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_startTimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_startTimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_startTimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_startTimer.DisabledState.Parent = this.btn_startTimer;
+            this.btn_startTimer.FillColor = System.Drawing.Color.CornflowerBlue;
+            this.btn_startTimer.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_startTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_startTimer.ForeColor = System.Drawing.Color.White;
+            this.btn_startTimer.HoverState.Parent = this.btn_startTimer;
+            this.btn_startTimer.Location = new System.Drawing.Point(124, 252);
+            this.btn_startTimer.Name = "btn_startTimer";
+            this.btn_startTimer.ShadowDecoration.Parent = this.btn_startTimer;
+            this.btn_startTimer.Size = new System.Drawing.Size(97, 36);
+            this.btn_startTimer.TabIndex = 10;
+            this.btn_startTimer.Text = "START";
+            this.btn_startTimer.Click += new System.EventHandler(this.btn_startTimer_Click);
             // 
             // btn_saveTaskTimer
             // 
@@ -558,12 +565,61 @@ namespace TodoList
             this.btn_saveTaskTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btn_saveTaskTimer.ForeColor = System.Drawing.Color.White;
             this.btn_saveTaskTimer.HoverState.Parent = this.btn_saveTaskTimer;
-            this.btn_saveTaskTimer.Location = new System.Drawing.Point(52, 181);
+            this.btn_saveTaskTimer.Location = new System.Drawing.Point(124, 294);
             this.btn_saveTaskTimer.Name = "btn_saveTaskTimer";
             this.btn_saveTaskTimer.ShadowDecoration.Parent = this.btn_saveTaskTimer;
             this.btn_saveTaskTimer.Size = new System.Drawing.Size(97, 36);
             this.btn_saveTaskTimer.TabIndex = 10;
             this.btn_saveTaskTimer.Text = "SAVE";
+            this.btn_saveTaskTimer.Click += new System.EventHandler(this.btn_saveTaskTimer_Click);
+            // 
+            // tb_callTimer
+            // 
+            this.tb_callTimer.BackColor = System.Drawing.Color.Transparent;
+            this.tb_callTimer.BorderRadius = 4;
+            this.tb_callTimer.CheckedState.Parent = this.tb_callTimer;
+            this.tb_callTimer.CustomImages.Parent = this.tb_callTimer;
+            this.tb_callTimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.tb_callTimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.tb_callTimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.tb_callTimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.tb_callTimer.DisabledState.Parent = this.tb_callTimer;
+            this.tb_callTimer.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tb_callTimer.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.tb_callTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.tb_callTimer.ForeColor = System.Drawing.Color.White;
+            this.tb_callTimer.HoverState.Parent = this.tb_callTimer;
+            this.tb_callTimer.Location = new System.Drawing.Point(353, 231);
+            this.tb_callTimer.Name = "tb_callTimer";
+            this.tb_callTimer.ShadowDecoration.Parent = this.tb_callTimer;
+            this.tb_callTimer.Size = new System.Drawing.Size(136, 36);
+            this.tb_callTimer.TabIndex = 10;
+            this.tb_callTimer.Text = "TIME MY TASK";
+            this.tb_callTimer.Click += new System.EventHandler(this.tb_callTimer_Click);
+            // 
+            // btn_resetTimer
+            // 
+            this.btn_resetTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_resetTimer.BorderRadius = 4;
+            this.btn_resetTimer.CheckedState.Parent = this.btn_resetTimer;
+            this.btn_resetTimer.CustomImages.Parent = this.btn_resetTimer;
+            this.btn_resetTimer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_resetTimer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_resetTimer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_resetTimer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_resetTimer.DisabledState.Parent = this.btn_resetTimer;
+            this.btn_resetTimer.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_resetTimer.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_resetTimer.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_resetTimer.ForeColor = System.Drawing.Color.White;
+            this.btn_resetTimer.HoverState.Parent = this.btn_resetTimer;
+            this.btn_resetTimer.Location = new System.Drawing.Point(249, 294);
+            this.btn_resetTimer.Name = "btn_resetTimer";
+            this.btn_resetTimer.ShadowDecoration.Parent = this.btn_resetTimer;
+            this.btn_resetTimer.Size = new System.Drawing.Size(97, 36);
+            this.btn_resetTimer.TabIndex = 10;
+            this.btn_resetTimer.Text = "RESET";
+            this.btn_resetTimer.Click += new System.EventHandler(this.btn_resetTimer_Click);
             // 
             // DashBoard
             // 
@@ -572,6 +628,7 @@ namespace TodoList
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(547, 506);
+            this.Controls.Add(this.timer_panel);
             this.Controls.Add(this.dataGridPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -583,7 +640,7 @@ namespace TodoList
             this.dataGridPanel.ResumeLayout(false);
             this.dataGridPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_datagrid)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.timer_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -611,12 +668,14 @@ namespace TodoList
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2Button btn_delete;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel timer_panel;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
-        private Guna.UI2.WinForms.Guna2Button btn_stop;
-        private Guna.UI2.WinForms.Guna2Button btn_start;
+        private Guna.UI2.WinForms.Guna2TextBox tb_timer;
+        private Guna.UI2.WinForms.Guna2Button btn_stopTimer;
+        private Guna.UI2.WinForms.Guna2Button btn_startTimer;
         private Guna.UI2.WinForms.Guna2Button btn_saveTaskTimer;
+        private Guna.UI2.WinForms.Guna2Button tb_callTimer;
+        private Guna.UI2.WinForms.Guna2Button btn_resetTimer;
     }
 }
 

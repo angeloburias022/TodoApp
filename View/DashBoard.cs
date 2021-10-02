@@ -16,7 +16,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Timers;
 
 namespace TodoList
 {
@@ -28,6 +28,10 @@ namespace TodoList
         //SqlConnection connection;
 
         //TodoApp_connectionString
+
+
+        System.Timers.Timer t;
+        int h, m, s;
 
         private static string constring = ConfigurationManager.ConnectionStrings["TodoApp_connectionString"].ConnectionString;
 
@@ -51,13 +55,39 @@ namespace TodoList
 
         public DashBoard()
         {
-
             InitializeComponent();
-         
+            timer_panel.Visible = false;
         }
         private void DashBoard_Load(object sender, EventArgs e)
         {
            todolist_datagrid.DataSource = GetTodoList(); // loads data into the grid
+
+            t = new System.Timers.Timer();
+            t.Interval = 1000; // ls
+            t.Elapsed += OnTimeEvent;
+
+
+        }
+        // timer
+        private void OnTimeEvent(object sender, ElapsedEventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                s += 1;
+                if(s == 60)
+                {
+                    s = 0;
+                    m += 1;
+                }
+
+                if(m== 60)
+                {
+                    m = 0;
+                    h += 1;
+                }
+
+                tb_timer.Text = string.Format("{0}:{1}:{2}", h.ToString().PadLeft(2,'0'), m.ToString().PadLeft(2,'0'), s.ToString().PadLeft(2,'0'));
+            }));
         }
 
 
@@ -340,6 +370,9 @@ namespace TodoList
         {
         tb_id.Text = this.todolist_datagrid.CurrentRow.Cells[3].Value.ToString();  
         }
+
+       
+
         private void UpdateGrid()
         {
             if (rd_done.Checked)
@@ -355,6 +388,37 @@ namespace TodoList
 
                 todolist_datagrid.Update();
             }
+        }
+
+        private void btn_resetTimer_Click(object sender, EventArgs e)
+        {
+            tb_timer.Text = "00:00:00";
+            t.Stop();
+            h = 0; 
+            m = 0;  
+            s = 0;
+
+         
+        }
+
+        private void tb_callTimer_Click(object sender, EventArgs e)
+        {
+            timer_panel.Visible = true;
+        }
+
+        private void btn_saveTaskTimer_Click(object sender, EventArgs e)
+        {
+            timer_panel.Visible = false;
+        }
+
+        private void btn_startTimer_Click(object sender, EventArgs e)
+        {
+            t.Start();
+        }
+
+        private void btn_stopTimer_Click(object sender, EventArgs e)
+        {
+            t.Stop();
         }
     }
 }
