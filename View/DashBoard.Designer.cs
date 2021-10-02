@@ -33,10 +33,13 @@ namespace TodoList
             this.rd_notDone = new Guna.UI2.WinForms.Guna2RadioButton();
             this.rd_done = new Guna.UI2.WinForms.Guna2RadioButton();
             this.tb_id = new System.Windows.Forms.TextBox();
+            this.btn_delete = new Guna.UI2.WinForms.Guna2Button();
             this.btn_clear = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.todolist_datagrid = new System.Windows.Forms.DataGridView();
             this.tb_title_changes = new Guna.UI2.WinForms.Guna2TextBox();
@@ -47,19 +50,27 @@ namespace TodoList
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btn_start = new Guna.UI2.WinForms.Guna2Button();
+            this.btn_stop = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.dataGridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_datagrid)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridPanel
             // 
             this.dataGridPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridPanel.Controls.Add(this.panel1);
             this.dataGridPanel.Controls.Add(this.rd_notDone);
             this.dataGridPanel.Controls.Add(this.rd_done);
             this.dataGridPanel.Controls.Add(this.tb_id);
+            this.dataGridPanel.Controls.Add(this.btn_delete);
             this.dataGridPanel.Controls.Add(this.btn_clear);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel6);
+            this.dataGridPanel.Controls.Add(this.guna2HtmlLabel9);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel5);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel7);
             this.dataGridPanel.Controls.Add(this.guna2HtmlLabel8);
@@ -70,7 +81,7 @@ namespace TodoList
             this.dataGridPanel.Controls.Add(this.Cmb_one);
             this.dataGridPanel.Controls.Add(this.cmb_when_changes);
             this.dataGridPanel.Controls.Add(this.tb_desc_changes);
-            this.dataGridPanel.Location = new System.Drawing.Point(31, 12);
+            this.dataGridPanel.Location = new System.Drawing.Point(22, 15);
             this.dataGridPanel.Name = "dataGridPanel";
             this.dataGridPanel.ShadowDecoration.Parent = this.dataGridPanel;
             this.dataGridPanel.Size = new System.Drawing.Size(500, 479);
@@ -118,11 +129,34 @@ namespace TodoList
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(395, 240);
+            this.tb_id.Location = new System.Drawing.Point(411, 268);
             this.tb_id.Name = "tb_id";
             this.tb_id.Size = new System.Drawing.Size(51, 20);
             this.tb_id.TabIndex = 11;
-            this.tb_id.Visible = false;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.BackColor = System.Drawing.Color.Transparent;
+            this.btn_delete.BorderRadius = 4;
+            this.btn_delete.CheckedState.Parent = this.btn_delete;
+            this.btn_delete.CustomImages.Parent = this.btn_delete;
+            this.btn_delete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_delete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_delete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_delete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_delete.DisabledState.Parent = this.btn_delete;
+            this.btn_delete.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_delete.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_delete.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_delete.ForeColor = System.Drawing.Color.White;
+            this.btn_delete.HoverState.Parent = this.btn_delete;
+            this.btn_delete.Location = new System.Drawing.Point(353, 156);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.ShadowDecoration.Parent = this.btn_delete;
+            this.btn_delete.Size = new System.Drawing.Size(136, 36);
+            this.btn_delete.TabIndex = 10;
+            this.btn_delete.Text = "DELETE";
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_clear
             // 
@@ -140,7 +174,7 @@ namespace TodoList
             this.btn_clear.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.btn_clear.ForeColor = System.Drawing.Color.White;
             this.btn_clear.HoverState.Parent = this.btn_clear;
-            this.btn_clear.Location = new System.Drawing.Point(353, 180);
+            this.btn_clear.Location = new System.Drawing.Point(353, 198);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.ShadowDecoration.Parent = this.btn_clear;
             this.btn_clear.Size = new System.Drawing.Size(136, 36);
@@ -158,6 +192,16 @@ namespace TodoList
             this.guna2HtmlLabel6.TabIndex = 6;
             this.guna2HtmlLabel6.Text = "When:";
             // 
+            // guna2HtmlLabel9
+            // 
+            this.guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel9.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel9.Location = new System.Drawing.Point(12, 216);
+            this.guna2HtmlLabel9.Name = "guna2HtmlLabel9";
+            this.guna2HtmlLabel9.Size = new System.Drawing.Size(65, 29);
+            this.guna2HtmlLabel9.TabIndex = 7;
+            this.guna2HtmlLabel9.Text = "Title:";
+            // 
             // guna2HtmlLabel5
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
@@ -172,20 +216,30 @@ namespace TodoList
             // 
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel7.Location = new System.Drawing.Point(287, 235);
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(302, 259);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(102, 29);
             this.guna2HtmlLabel7.TabIndex = 8;
             this.guna2HtmlLabel7.Text = "Task ID:";
             this.guna2HtmlLabel7.Visible = false;
             // 
+            // guna2HtmlLabel8
+            // 
+            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel8.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel8.Location = new System.Drawing.Point(388, 85);
+            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            this.guna2HtmlLabel8.Size = new System.Drawing.Size(64, 26);
+            this.guna2HtmlLabel8.TabIndex = 8;
+            this.guna2HtmlLabel8.Text = "TASK";
+            // 
             // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(370, 8);
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(361, 14);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(103, 21);
+            this.guna2HtmlLabel4.Size = new System.Drawing.Size(128, 26);
             this.guna2HtmlLabel4.TabIndex = 8;
             this.guna2HtmlLabel4.Text = "ADD/SAVE";
             // 
@@ -199,8 +253,9 @@ namespace TodoList
             this.todolist_datagrid.Location = new System.Drawing.Point(12, 14);
             this.todolist_datagrid.Name = "todolist_datagrid";
             this.todolist_datagrid.ReadOnly = true;
-            this.todolist_datagrid.Size = new System.Drawing.Size(331, 202);
+            this.todolist_datagrid.Size = new System.Drawing.Size(331, 204);
             this.todolist_datagrid.TabIndex = 0;
+            this.todolist_datagrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.todolist_datagrid_CellClick);
             this.todolist_datagrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.todolist_datagrid_CellDoubleClick);
             // 
             // tb_title_changes
@@ -251,7 +306,7 @@ namespace TodoList
             "COMPLETED",
             "TASK"});
             this.cmb_two.ItemsAppearance.Parent = this.cmb_two;
-            this.cmb_two.Location = new System.Drawing.Point(353, 112);
+            this.cmb_two.Location = new System.Drawing.Point(353, 114);
             this.cmb_two.Name = "cmb_two";
             this.cmb_two.ShadowDecoration.Parent = this.cmb_two;
             this.cmb_two.Size = new System.Drawing.Size(136, 36);
@@ -277,7 +332,7 @@ namespace TodoList
             "ADD",
             "SAVE"});
             this.Cmb_one.ItemsAppearance.Parent = this.Cmb_one;
-            this.Cmb_one.Location = new System.Drawing.Point(353, 35);
+            this.Cmb_one.Location = new System.Drawing.Point(353, 43);
             this.Cmb_one.Name = "Cmb_one";
             this.Cmb_one.ShadowDecoration.Parent = this.Cmb_one;
             this.Cmb_one.Size = new System.Drawing.Size(136, 36);
@@ -308,7 +363,7 @@ namespace TodoList
             this.cmb_when_changes.Location = new System.Drawing.Point(290, 423);
             this.cmb_when_changes.Name = "cmb_when_changes";
             this.cmb_when_changes.ShadowDecoration.Parent = this.cmb_when_changes;
-            this.cmb_when_changes.Size = new System.Drawing.Size(172, 36);
+            this.cmb_when_changes.Size = new System.Drawing.Size(199, 36);
             this.cmb_when_changes.TabIndex = 9;
             // 
             // tb_desc_changes
@@ -370,15 +425,120 @@ namespace TodoList
             this.guna2HtmlLabel3.TabIndex = 6;
             this.guna2HtmlLabel3.Text = "When:";
             // 
-            // guna2HtmlLabel8
+            // panel1
             // 
-            this.guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel8.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel8.Location = new System.Drawing.Point(388, 83);
-            this.guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            this.guna2HtmlLabel8.Size = new System.Drawing.Size(58, 23);
-            this.guna2HtmlLabel8.TabIndex = 8;
-            this.guna2HtmlLabel8.Text = "TASK";
+            this.panel1.Controls.Add(this.guna2TextBox1);
+            this.panel1.Controls.Add(this.guna2TextBox2);
+            this.panel1.Controls.Add(this.btn_stop);
+            this.panel1.Controls.Add(this.btn_start);
+            this.panel1.Location = new System.Drawing.Point(36, 43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(311, 221);
+            this.panel1.TabIndex = 13;
+            // 
+            // guna2TextBox2
+            // 
+            this.guna2TextBox2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2TextBox2.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2TextBox2.BorderRadius = 8;
+            this.guna2TextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox2.DefaultText = "";
+            this.guna2TextBox2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.DisabledState.Parent = this.guna2TextBox2;
+            this.guna2TextBox2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox2.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.guna2TextBox2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.FocusedState.Parent = this.guna2TextBox2;
+            this.guna2TextBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.guna2TextBox2.ForeColor = System.Drawing.Color.White;
+            this.guna2TextBox2.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox2.HoverState.Parent = this.guna2TextBox2;
+            this.guna2TextBox2.Location = new System.Drawing.Point(113, 83);
+            this.guna2TextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2TextBox2.Name = "guna2TextBox2";
+            this.guna2TextBox2.PasswordChar = '\0';
+            this.guna2TextBox2.PlaceholderText = "      0:00";
+            this.guna2TextBox2.SelectedText = "";
+            this.guna2TextBox2.ShadowDecoration.Parent = this.guna2TextBox2;
+            this.guna2TextBox2.Size = new System.Drawing.Size(98, 36);
+            this.guna2TextBox2.TabIndex = 5;
+            // 
+            // btn_start
+            // 
+            this.btn_start.BackColor = System.Drawing.Color.Transparent;
+            this.btn_start.BorderRadius = 4;
+            this.btn_start.CheckedState.Parent = this.btn_start;
+            this.btn_start.CustomImages.Parent = this.btn_start;
+            this.btn_start.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_start.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_start.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_start.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_start.DisabledState.Parent = this.btn_start;
+            this.btn_start.FillColor = System.Drawing.Color.CornflowerBlue;
+            this.btn_start.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_start.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_start.ForeColor = System.Drawing.Color.White;
+            this.btn_start.HoverState.Parent = this.btn_start;
+            this.btn_start.Location = new System.Drawing.Point(52, 136);
+            this.btn_start.Name = "btn_start";
+            this.btn_start.ShadowDecoration.Parent = this.btn_start;
+            this.btn_start.Size = new System.Drawing.Size(97, 36);
+            this.btn_start.TabIndex = 10;
+            this.btn_start.Text = "START";
+            // 
+            // btn_stop
+            // 
+            this.btn_stop.BackColor = System.Drawing.Color.Transparent;
+            this.btn_stop.BorderRadius = 4;
+            this.btn_stop.CheckedState.Parent = this.btn_stop;
+            this.btn_stop.CustomImages.Parent = this.btn_stop;
+            this.btn_stop.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_stop.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_stop.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_stop.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_stop.DisabledState.Parent = this.btn_stop;
+            this.btn_stop.FillColor = System.Drawing.Color.Red;
+            this.btn_stop.FocusedColor = System.Drawing.Color.LimeGreen;
+            this.btn_stop.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_stop.ForeColor = System.Drawing.Color.White;
+            this.btn_stop.HoverState.Parent = this.btn_stop;
+            this.btn_stop.Location = new System.Drawing.Point(176, 136);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.ShadowDecoration.Parent = this.btn_stop;
+            this.btn_stop.Size = new System.Drawing.Size(97, 36);
+            this.btn_stop.TabIndex = 10;
+            this.btn_stop.Text = "STOP";
+            // 
+            // guna2TextBox1
+            // 
+            this.guna2TextBox1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2TextBox1.BorderColor = System.Drawing.Color.Transparent;
+            this.guna2TextBox1.BorderRadius = 4;
+            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.guna2TextBox1.DefaultText = "";
+            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.DisabledState.Parent = this.guna2TextBox1;
+            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.guna2TextBox1.FillColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.FocusedState.Parent = this.guna2TextBox1;
+            this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.guna2TextBox1.ForeColor = System.Drawing.Color.White;
+            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2TextBox1.HoverState.Parent = this.guna2TextBox1;
+            this.guna2TextBox1.Location = new System.Drawing.Point(28, 16);
+            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2TextBox1.Name = "guna2TextBox1";
+            this.guna2TextBox1.PasswordChar = '\0';
+            this.guna2TextBox1.PlaceholderText = "TASK";
+            this.guna2TextBox1.SelectedText = "";
+            this.guna2TextBox1.ShadowDecoration.Parent = this.guna2TextBox1;
+            this.guna2TextBox1.Size = new System.Drawing.Size(262, 36);
+            this.guna2TextBox1.TabIndex = 5;
             // 
             // DashBoard
             // 
@@ -398,6 +558,7 @@ namespace TodoList
             this.dataGridPanel.ResumeLayout(false);
             this.dataGridPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.todolist_datagrid)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -423,6 +584,13 @@ namespace TodoList
         private Guna.UI2.WinForms.Guna2ComboBox cmb_two;
         private Guna.UI2.WinForms.Guna2ComboBox Cmb_one;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
+        private Guna.UI2.WinForms.Guna2Button btn_delete;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
+        private System.Windows.Forms.Panel panel1;
+        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
+        private Guna.UI2.WinForms.Guna2Button btn_stop;
+        private Guna.UI2.WinForms.Guna2Button btn_start;
     }
 }
 

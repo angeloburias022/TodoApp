@@ -29,7 +29,7 @@ namespace TodoList
 
         //TodoApp_connectionString
 
-        //private static string constring = ConfigurationManager.ConnectionStrings["TodoApp_connectionString"].ConnectionString;
+        private static string constring = ConfigurationManager.ConnectionStrings["TodoApp_connectionString"].ConnectionString;
 
 
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -57,100 +57,17 @@ namespace TodoList
         }
         private void DashBoard_Load(object sender, EventArgs e)
         {
-           todolist_datagrid.DataSource = GetTodoList(); 
+           todolist_datagrid.DataSource = GetTodoList(); // loads data into the grid
         }
 
+
+        // get the current task
         private DataTable GetTodoList()
         {
-                return tc.GetTodo();
-        }
-        private void Save()
-        {
-            try
-            { 
-                if (MessageBox.Show("Save?", "Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-                {
-                    // if radio button done is check then the task changes will be saved
-                    if (rd_done.Checked || rd_notDone.Checked)
-                    {
-                        var NewUpdate = new Todo_Model()
-                        {
-                            TodoID = Convert.ToInt32(tb_id.Text),
-                            Title = tb_title_changes.Text,
-                            Description = tb_desc_changes.Text,
-                            When_Todo = cmb_when_changes.Text,
-                            Task_Status = CheckRadioDone()
-                        };
-
-                        tc.UpdateTodo(NewUpdate);
-                        UpdateGrid();
-
-                        ClearTxtBoxes();
-
-
-                        // if radio button not done is checked, then it will be considered as new task
-                    }else
-                    {
-                        MessageBox.Show("Mark it as done or leave it as not done");
-                    }
-                  
-                }
-                else
-                {
-                    MessageBox.Show("Cancelled Successfully");
-                }
-
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("something went wrong here code[btn_save_Click]" + error);
-            }
+                return tc.GetTodo(); 
         }
 
-        private void Add()
-        {
-            if (rd_notDone.Checked)
-            {
-                var AddNew = new Todo()
-                {
-                    Title = tb_title_changes.Text,
-                    Description = tb_desc_changes.Text,
-                    When_Todo = cmb_when_changes.Text,
-                    Task_Status = CheckRadioDone()
-                };
-                    if (MessageBox.Show("Add new?", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)== DialogResult.OK)
-                    {
-                        tc.AddNewTodo(AddNew);
-
-                    }
-
-                UpdateGrid();
-
-
-                ClearTxtBoxes();
-            }else
-            {
-                MessageBox.Show("Dont Add it if its already done!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void UpdateGrid()
-        {
-            if (rd_done.Checked)
-            {
-                todolist_datagrid.DataSource = tc.GetFinishedTask();
-
-                todolist_datagrid.Update();
-
-            }
-            else if (rd_notDone.Checked)
-            {
-                todolist_datagrid.DataSource = tc.GetTodo();
-
-                todolist_datagrid.Update();
-            }
-        }
-
+        // clear txtboxes
         private void ClearTxtBoxes()
         {
 
@@ -160,6 +77,8 @@ namespace TodoList
             tb_desc_changes.Clear();
             tb_id.Clear();
         }
+
+        // pass data into the txtbox
         private void todolist_datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
           
@@ -186,6 +105,7 @@ namespace TodoList
 
         }
 
+        // get the task finished
         private void btn_taskfinished_Click(object sender, EventArgs e)
         {
             // updates the datagrid when this handler is called
@@ -196,6 +116,7 @@ namespace TodoList
             
         }
 
+        // get current task
         private void btn_Task_Click(object sender, EventArgs e)
         {
 
@@ -226,6 +147,8 @@ namespace TodoList
             }
         }
 
+
+        // clears txtboxes
         private void btn_clear_Click(object sender, EventArgs e)
         {
             tb_title_changes.Clear();
@@ -233,13 +156,7 @@ namespace TodoList
             tb_id.Clear();
         }
 
-        private void btn_markdone_DoubleClick(object sender, EventArgs e)
-        {
-            Save();
-            todolist_datagrid.Update();
-            todolist_datagrid.DataSource = tc.GetFinishedTask();
-        }
-
+        // makes the edge of the form more rounder
         private void DashBoard_Paint(object sender, PaintEventArgs e)
         {
             System.IntPtr ptr = CreateRoundRectRgn(0, 0, this.Width, this.Height, 12, 12); // _BoarderRaduis can be adjusted to your needs, try 15 to start.
@@ -247,6 +164,77 @@ namespace TodoList
             DeleteObject(ptr);
         }
 
+        // adding and saving
+        private void Save()
+        {
+            try
+            {
+                if (MessageBox.Show("Save?", "Update", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    // if radio button done is check then the task changes will be saved
+                    if (rd_done.Checked || rd_notDone.Checked)
+                    {
+                        var NewUpdate = new Todo_Model()
+                        {
+                            TodoID = Convert.ToInt32(tb_id.Text),
+                            Title = tb_title_changes.Text,
+                            Description = tb_desc_changes.Text,
+                            When_Todo = cmb_when_changes.Text,
+                            Task_Status = CheckRadioDone()
+                        };
+
+                        tc.UpdateTodo(NewUpdate);
+                        UpdateGrid();
+
+                        ClearTxtBoxes();
+
+
+                        // if radio button not done is checked, then it will be considered as new task
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mark it as done or leave it as not done");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Cancelled Successfully");
+                }
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("something went wrong here code[btn_save_Click]" + error);
+            }
+        }
+        private void Add()
+        {
+            if (rd_notDone.Checked)
+            {
+                var AddNew = new Todo()
+                {
+                    Title = tb_title_changes.Text,
+                    Description = tb_desc_changes.Text,
+                    When_Todo = cmb_when_changes.Text,
+                    Task_Status = CheckRadioDone()
+                };
+                if (MessageBox.Show("Add new?", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    tc.AddNewTodo(AddNew);
+
+                }
+
+                UpdateGrid();
+
+
+                ClearTxtBoxes();
+            }
+            else
+            {
+                MessageBox.Show("Dont Add it if its already done!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void Cmb_one_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Cmb_one.Text == "SAVE")
@@ -279,6 +267,93 @@ namespace TodoList
                 todolist_datagrid.DataSource = tc.GetTodo();
                 todolist_datagrid.Update();
                 todolist_datagrid.Refresh();
+            }
+        }
+
+
+        // delete
+
+        private void DeleteTask(Todo id)
+        {
+
+            using (TodoListAppEntities db = new TodoListAppEntities())
+            { 
+                try
+                {
+                    if (MessageBox.Show("You sure you want to Delete this?", "This cannot be undo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)== DialogResult.OK)
+                    {
+
+                        //var ID = from data in db.Todoes
+                        //         where data.TodoID == id
+                        //         select db;
+
+
+                        using (SqlConnection con = new SqlConnection(constring))
+                        {
+                            string DeleteQuery = "DELETE FROM Todo WHERE TodoID='"+tb_id.Text+"'";
+
+                            using (SqlCommand com = new SqlCommand(DeleteQuery, con))
+                            {
+                                con.Open();
+                                com.ExecuteNonQuery();
+                                MessageBox.Show("Deleted successfully! ", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                UpdateGrid();
+                                con.Close();
+                            }
+                        }
+
+                      
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelled successfully", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("Something went wrong" + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw;
+                }
+
+
+            }
+        }
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            tb_id.Text = Convert.ToString(0);
+
+            if (tb_id.Text == Convert.ToString(0))
+            {
+                MessageBox.Show("You have not selected anything", "Blank", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                var id = new Todo()
+                {
+                    TodoID = Convert.ToInt32(tb_id.Text)
+                };
+                DeleteTask(id);
+            }
+        }
+
+        private void todolist_datagrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+        tb_id.Text = this.todolist_datagrid.CurrentRow.Cells[3].Value.ToString();  
+        }
+        private void UpdateGrid()
+        {
+            if (rd_done.Checked)
+            {
+                todolist_datagrid.DataSource = tc.GetFinishedTask();
+
+                todolist_datagrid.Update();
+
+            }
+            else if (rd_notDone.Checked)
+            {
+                todolist_datagrid.DataSource = tc.GetTodo();
+
+                todolist_datagrid.Update();
             }
         }
     }
